@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: options-cache-deployment
 spec:
-  replicas: 1  
+  replicas: 1 
+  revisionhistorylimit: 2 
   selector:
     matchLabels:
       app: options-cache
