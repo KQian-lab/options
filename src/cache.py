@@ -95,66 +95,64 @@ def options_chain(ticker):
     parameters:
       - name: ticker
         in: path
-        type: string
         required: true
-        description: The stock ticker symbol
-    responses:
-      200:
-        description: A list of options chains
+        description: The stock ticker symbol (e.g., AAPL, TSLA, etc.)
         schema:
-          type: object
-          properties:
-            ticker:
-              type: string
-              description: The stock ticker symbol
-            ticker:
-              type: number
-              description: The number of seconds the info is delayed
-            options_chain:
+          type: string
+          example: "AAPL"
+    responses:
+      '200':
+        description: A JSON object with options chain data, organized by expiration dates
+        content:
+          application/json:
+            schema:
               type: object
-              properties:
-                expiration_date:
+              description: A dictionary where the key is the expiration date, and the value is an array of call options.
+              additionalProperties:
+                type: array
+                items:
                   type: object
                   properties:
-                    call_options:
-                      type: array
-                      description: A list of call options for the expiration date
-                      items:
-                        type: object
-                        properties:
-                          contractSymbol:
-                            type: string
-                            description: The symbol of the options contract
-                          strike:
-                            type: number
-                            description: The strike price of the option
-                          lastPrice:
-                            type: number
-                            description: The last price of the option contract
-                          bid:
-                            type: number
-                            description: The bid price of the option
-                          ask:
-                            type: number
-                            description: The ask price of the option
-                          volume:
-                            type: number
-                            description: The trading volume of the option
-                          openInterest:
-                            type: number
-                            description: The open interest of the option
-                          impliedVolatility:
-                            type: number
-                            description: The implied volatility of the option
-                          inTheMoney:
-                            type: boolean
-                            description: Whether the option is currently in the money
-                          delta:
-                            type: number
-                            description: The delta value of the option
-                          stock_price:
-                            type: number
-                            description: The stock price related to the option
+                    ask:
+                      type: number
+                      example: 0.0
+                    bid:
+                      type: number
+                      example: 0.0
+                    contractSymbol:
+                      type: string
+                      example: "AAPL241011C00100000"
+                    contract_price_estimate:
+                      type: number
+                      example: 0.0
+                    delta:
+                      type: number
+                      example: 1.0
+                    impliedVolatility:
+                      type: number
+                      example: 1.0000000000000003e-05
+                    inTheMoney:
+                      type: boolean
+                      example: true
+                    lastPrice:
+                      type: number
+                      example: 124.05
+                    openInterest:
+                      type: integer
+                      example: 0
+                    stock_price:
+                      type: number
+                      example: 221.69
+                    strike:
+                      type: number
+                      example: 100.0
+                    volume:
+                      type: number
+                      example: 2
+      '404':
+        description: Ticker not found or no options data available for the given ticker
+      '500':
+        description: Internal server error
     """
     options_data = get_options_chain(ticker.upper())
     return jsonify(options_data)
