@@ -12,7 +12,8 @@ env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   IMAGE_NAME: artifacts.tekuro.io/cache
-
+      imagePullSecrets:
+        - name: regcred
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -37,7 +38,8 @@ jobs:
       - name: Update deployment.yaml
         run: |
           cd deployment
-          sed -i 's|image: ${{ env.IMAGE_NAME }}:.*|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|' deployment.yaml
+          sed -i 's|image: ${{ env.IMAGE_NAME }}:.*|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|' deployment.yaml 
+          cat deployment.yaml
           git config --global user.name 'Github Actions'
           git config --global user.email 'actions@github.com'
           git add deployment.yaml
