@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: options-cache
-        image: artifacts.tekuro.io/cache:ebd303de1250236727838d3592f52685c110704d
+        image: artifacts.tekuro.io/cache:f8262a85df2a408647ece4d30d5a16e3f62b2ea8
         ports:
         - containerPort: 8080
         env:
