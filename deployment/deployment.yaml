@@ -26,7 +26,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: redis  # The name of the secret
-              key: REDIS_PASSWORD  # The key within the secret
+              key: redis-password  # The key within the secret
               optional: false
       imagePullSecrets:
         - name: regcred  # For pulling the image from a private registry
