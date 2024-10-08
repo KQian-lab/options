@@ -12,8 +12,7 @@ env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   IMAGE_NAME: artifacts.tekuro.io/cache
-      imagePullSecrets:
-        - name: regcred
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
