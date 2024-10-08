@@ -107,48 +107,51 @@ def options_chain(ticker):
           application/json:
             schema:
               type: object
-              description: A dictionary where the key is the expiration date, and the value is an array of call options.
+              description: A dictionary where the key is the expiration date, and the value is an object containing a `call_options` array.
               additionalProperties:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    ask:
-                      type: number
-                      example: 0.0
-                    bid:
-                      type: number
-                      example: 0.0
-                    contractSymbol:
-                      type: string
-                      example: "AAPL241011C00100000"
-                    contract_price_estimate:
-                      type: number
-                      example: 0.0
-                    delta:
-                      type: number
-                      example: 1.0
-                    impliedVolatility:
-                      type: number
-                      example: 1.0000000000000003e-05
-                    inTheMoney:
-                      type: boolean
-                      example: true
-                    lastPrice:
-                      type: number
-                      example: 124.05
-                    openInterest:
-                      type: integer
-                      example: 0
-                    stock_price:
-                      type: number
-                      example: 221.69
-                    strike:
-                      type: number
-                      example: 100.0
-                    volume:
-                      type: number
-                      example: 2
+                type: object
+                properties:
+                  call_options:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ask:
+                          type: number
+                          example: 0.0
+                        bid:
+                          type: number
+                          example: 0.0
+                        contractSymbol:
+                          type: string
+                          example: "AAPL241011C00100000"
+                        contract_price_estimate:
+                          type: number
+                          example: 0.0
+                        delta:
+                          type: number
+                          example: 1.0
+                        impliedVolatility:
+                          type: number
+                          example: 1.0000000000000003e-05
+                        inTheMoney:
+                          type: boolean
+                          example: true
+                        lastPrice:
+                          type: number
+                          example: 124.05
+                        openInterest:
+                          type: integer
+                          example: 0
+                        stock_price:
+                          type: number
+                          example: 221.69
+                        strike:
+                          type: number
+                          example: 100.0
+                        volume:
+                          type: number
+                          example: 2
       '404':
         description: Ticker not found or no options data available for the given ticker
       '500':
