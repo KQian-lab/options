@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: options-cache
-        image: kqianlab/cache:latest  # Your application's Docker image
+        image: artifacts.tekuro.io/cache:latest  # Your application's Docker image
         ports:
         - containerPort: 8080
         env:
