@@ -11,7 +11,7 @@ on:
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  IMAGE_NAME: artifacts.tekuro.io/apps
+  IMAGE_NAME: artifacts.tekuro.io/cache
 
 jobs:
   build-and-deploy:
