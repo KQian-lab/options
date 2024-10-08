@@ -19,8 +19,14 @@ spec:
         - containerPort: 8080
         env:
         - name: REDIS_HOST  
-          value: redis-master.redis.svc.cluster.local
+          value: redis-master.redis.svc.cluster.local  # Full Redis service DNS
         - name: REDIS_PORT
           value: "6379"
+        - name: REDIS_PASSWORD  # Adding Redis password from the secret
+          valueFrom:
+            secretKeyRef:
+              name: redis  # The name of the secret
+              key: REDIS_PASSWORD  # The key within the secret
+              optional: false
       imagePullSecrets:
-        - name: regcred
+        - name: regcred  # For pulling the image from a private registry

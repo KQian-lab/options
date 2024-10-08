@@ -11,13 +11,13 @@ from flasgger import Swagger
 
 app = Flask(__name__)
 swagger = Swagger(app)
-
+redis_password = os.getenv('REDIS_PASSWORD')
 redis_host = os.getenv('REDIS_HOST', 'localhost')
 redis_port = int(os.getenv('REDIS_PORT', 6379))
 redis_db = int(os.getenv('REDIS_DB', 0))
 initial_ttl = int(os.getenv('INITIAL_TTL', 60))
 
-redis_client = redis.Redis(host=redis_host, port=redis_port, db=redis_db)
+redis_client = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password = redis_password)
 
 
 def _refresh_options_chain(ticker):
