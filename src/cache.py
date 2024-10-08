@@ -67,7 +67,7 @@ def get_options_chain(ticker):
         expiration_delays = []
         options_data = {}
         for key in keys:
-            expiration_date = key.decode("utf-8").split(":")[-1]
+            expiration_date = key.split(":")[-1]
             contracts_json = redis_client.get(key)
 
             ttl = redis_client.ttl(key)

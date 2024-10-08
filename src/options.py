@@ -25,7 +25,6 @@ def _black_scholes_delta(S, K, r, T, sigma, option_type='call', q=0, precision=3
     else:
         raise ValueError("Option type must be either 'call' or 'put'")
 
-    delta = np.round(delta, precision)
 
     return delta
 
