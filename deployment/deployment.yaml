@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: options-cache-deployment
+spec:
+  replicas: 2  # Adjust the number of replicas based on your needs
+  selector:
+    matchLabels:
+      app: options-cache
+  template:
+    metadata:
+      labels:
+        app: options-cache
+    spec:
+      containers:
+      - name: options-cache
+        image: kqianlab/cache:latest  # Your application's Docker image
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REDIS_HOST  # Set the Redis host as an environment variable
+          value: redis-master.redis.svc.cluster.local
+        - name: REDIS_PORT
+          value: "6379"
